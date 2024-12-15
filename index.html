@@ -45,7 +45,7 @@
             const srOffset = parseFloat(document.getElementById("srOffset").value);
             const slOffset = parseFloat(document.getElementById("slOffset").value);
             const centerOffset = parseFloat(document.getElementById("centerOffset").value);
-            const wings = parseFloat(document.getElementById("Wings").value);
+            const wings = parseFloat(document.getElementById("wings").value);
             if (isNaN(totalLength) || isNaN(objects) || isNaN(centerOffset) || isNaN(wings) || isNaN(srOffset) || isNaN(slOffset) || objects <= 0) {
                 document.getElementById("result").innerText = "Please enter valid numbers.";
                 return;
@@ -58,7 +58,7 @@
             else
                 let a = totalLength/2-(srOffset+centerOffset)
                 let b = totalLength/2-(slOffset+centerOffset)
-                let c = floor(objects/2)
+                let c = Math.floor(objects/2)
                 const slSpace =b/(c-1)
                 const srSpace =a/(c-1)
                 document.getElementById("result").innerText = `Space between Stage Right fixtures is ${srSpace.toFixed(2)} and space between Stage Left fixtures are` ${slSpace.toFixed(2)};
