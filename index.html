@@ -19,8 +19,8 @@
     <label for="totalLength">Total Length:</label>
     <input type="number" id="totalLength" placeholder="Enter total length"><br>
 
-    <label for="Wings">Skal den speiles?:</label>
-    <input type="number" id="Wings" placeholder="Skal det speiles?"><br>
+    <label for="wings">Skal den speiles?:</label>
+    <input type="number" id="wings" placeholder="Skal det speiles?"><br>
     
     <label for="centerOffset">Senter Offset:</label>
     <input type="number" id="centerOffset" placeholder="Enter senter offset"><br>
@@ -45,7 +45,7 @@
             const srOffset = parseFloat(document.getElementById("srOffset").value);
             const slOffset = parseFloat(document.getElementById("slOffset").value);
             const centerOffset = parseFloat(document.getElementById("centerOffset").value);
-            const Wings = parseFloat(document.getElementById("Wings").value);
+            const wings = parseFloat(document.getElementById("Wings").value);
             if (isNaN(totalLength) || isNaN(objects) || isNaN(centerOffset) || isNaN(Wings) || isNaN(srOffset) || isNaN(slOffset) || objects <= 0) {
                 document.getElementById("result").innerText = "Please enter valid numbers.";
                 return;
