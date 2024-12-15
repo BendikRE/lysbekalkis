@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Space Between Objects Calculator</h1>
+    <label for="totalLength">Total Length:</label>
+    <input type="number" id="totalLength" placeholder="Enter total length"><br>
+
+    <label for="objects">Number of Objects:</label>
+    <input type="number" id="objects" placeholder="Enter number of objects"><br>
+
+    <label for="srOffset">SR Offset:</label>
+    <input type="number" id="srOffset" placeholder="Enter SR offset"><br>
+
+    <label for="slOffset">SL Offset:</label>
+    <input type="number" id="slOffset" placeholder="Enter SL offset"><br>
+
+    <button onclick="calculateSpacing()">Calculate Spacing</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function calculateSpacing() {
+            const totalLength = parseFloat(document.getElementById("totalLength").value);
+            const objects = parseInt(document.getElementById("objects").value);
+            const srOffset = parseFloat(document.getElementById("srOffset").value);
+            const slOffset = parseFloat(document.getElementById("slOffset").value);
+            
+            if (isNaN(totalLength) || isNaN(objects) || isNaN(srOffset) || isNaN(slOffset) || objects <= 0) {
+                document.getElementById("result").innerText = "Please enter valid numbers.";
+                return;
+            }
+            
+            const effectiveLength = totalLength - (srOffset + slOffset);
+            const spaceBetween = effectiveLength / (objects - 1);
+            document.getElementById("result").innerText = `Space between objects: ${spaceBetween.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
