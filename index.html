@@ -113,6 +113,7 @@
         <input type="number" id="slOffset" placeholder="Enter SL offset"><br>
 
         <button onclick="calculateSpacing()">Calculate Spacing</button>
+        <button onclick="resetFields()">Reset</button>
 
         <h2 id="result"></h2>
     </div>
@@ -158,6 +159,16 @@
                 const srSpace = a / (c - 1);
                 document.getElementById("result").innerText = `Space between Stage Right fixtures is ${srSpace.toFixed(2)} and space between Stage Left fixtures is ${slSpace.toFixed(2)}.`;
             }
+        }
+
+        function resetFields() {
+            document.getElementById("totalLength").value = "";
+            document.getElementById("wings").value = "";
+            document.getElementById("centerOffset").value = "";
+            document.getElementById("objects").value = "";
+            document.getElementById("srOffset").value = "";
+            document.getElementById("slOffset").value = "";
+            document.getElementById("result").innerText = "";
         }
     </script>
 </body>
