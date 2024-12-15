@@ -46,11 +46,11 @@
             const slOffset = parseFloat(document.getElementById("slOffset").value);
             const centerOffset = parseFloat(document.getElementById("centerOffset").value);
             const wings = parseFloat(document.getElementById("Wings").value);
-            if (isNaN(totalLength) || isNaN(objects) || isNaN(centerOffset) || isNaN(Wings) || isNaN(srOffset) || isNaN(slOffset) || objects <= 0) {
+            if (isNaN(totalLength) || isNaN(objects) || isNaN(centerOffset) || isNaN(wings) || isNaN(srOffset) || isNaN(slOffset) || objects <= 0) {
                 document.getElementById("result").innerText = "Please enter valid numbers.";
                 return;
             }
-            if (Wings == 0) {
+            if (wings == 0) {
                 const effectiveLength = totalLength - (srOffset + slOffset);
                 const spaceBetween = effectiveLength / (objects - 1);
                 document.getElementById("result").innerText = `Space between objects: ${spaceBetween.toFixed(2)}`;
