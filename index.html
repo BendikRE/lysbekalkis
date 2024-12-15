@@ -19,6 +19,12 @@
     <label for="totalLength">Total Length:</label>
     <input type="number" id="totalLength" placeholder="Enter total length"><br>
 
+    <label for="Wings">Total Length:</label>
+    <input type="number" id="Wings" placeholder="Skal det speiles?"><br>
+    
+    <label for="centerOffset">Senter Offset:</label>
+    <input type="number" id="centerOffset" placeholder="Enter senter offset"><br>
+
     <label for="objects">Number of Objects:</label>
     <input type="number" id="objects" placeholder="Enter number of objects"><br>
 
@@ -38,16 +44,24 @@
             const objects = parseInt(document.getElementById("objects").value);
             const srOffset = parseFloat(document.getElementById("srOffset").value);
             const slOffset = parseFloat(document.getElementById("slOffset").value);
-            
-            if (isNaN(totalLength) || isNaN(objects) || isNaN(srOffset) || isNaN(slOffset) || objects <= 0) {
+            const centerOffset = parseFloat(document.getElementById("centerOffset").value);
+            const Wings = parseFloat(document.getElementById("Wings").value);
+            if (isNaN(totalLength) || isNaN(objects) || isNaN(centerOffset) || isNaN(Wings) || isNaN(srOffset) || isNaN(slOffset) || objects <= 0) {
                 document.getElementById("result").innerText = "Please enter valid numbers.";
                 return;
             }
-            
-            const effectiveLength = totalLength - (srOffset + slOffset);
-            const spaceBetween = effectiveLength / (objects - 1);
-            document.getElementById("result").innerText = `Space between objects: ${spaceBetween.toFixed(2)}`;
-        }
+            if (Wings == 0) {
+                const effectiveLength = totalLength - (srOffset + slOffset);
+                const spaceBetween = effectiveLength / (objects - 1);
+                document.getElementById("result").innerText = `Space between objects: ${spaceBetween.toFixed(2)}`;
+            }
+            else
+                let a = totalLength/2-(srOffset+centerOffset)
+                let b = totalLength/2-(slOffset+centerOffset)
+                let c = floor(objects/2)
+                const slSpace =b/(c-1)
+                const srSpace =a/(c-1)
+                document.getElementById("result").innerText = `Space between Stage Right fixtures is ${srSpace.toFixed(2)} and space between Stage Left fixtures are` ${slSpace.toFixed(2)};
     </script>
 </body>
 </html>
