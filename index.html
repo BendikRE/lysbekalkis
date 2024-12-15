@@ -20,7 +20,7 @@
     <input type="number" id="totalLength" placeholder="Enter total length"><br>
 
     <label for="wings">Skal den speiles?:</label>
-    <input type="number" id="wings" placeholder="0=nei, 2=ja"><br>
+    <input type="number" id="wings" placeholder="Skal det speiles?"><br>
     
     <label for="centerOffset">Senter Offset:</label>
     <input type="number" id="centerOffset" placeholder="Enter senter offset"><br>
@@ -46,22 +46,40 @@
             const slOffset = parseFloat(document.getElementById("slOffset").value);
             const centerOffset = parseFloat(document.getElementById("centerOffset").value);
             const wings = parseFloat(document.getElementById("wings").value);
-            if (isNaN(totalLength) || isNaN(objects) || isNaN(centerOffset) || isNaN(wings) || isNaN(srOffset) || isNaN(slOffset) || objects <= 0) {
+
+            // Validate input
+            if (
+                isNaN(totalLength) || isNaN(objects) || isNaN(centerOffset) || 
+                isNaN(wings) || isNaN(srOffset) || isNaN(slOffset) || 
+                objects <= 0
+            ) {
                 document.getElementById("result").innerText = "Please enter valid numbers.";
                 return;
             }
-            if (wings == 0) {
+
+            if (wings === 0) {
                 const effectiveLength = totalLength - (srOffset + slOffset);
+                if (objects <= 1) {
+                    document.getElementById("result").innerText = "Number of objects must be greater than 1.";
+                    return;
+                }
                 const spaceBetween = effectiveLength / (objects - 1);
                 document.getElementById("result").innerText = `Space between objects: ${spaceBetween.toFixed(2)}`;
+            } else {
+                const a = totalLength / 2 - (srOffset + centerOffset);
+                const b = totalLength / 2 - (slOffset + centerOffset);
+                const c = Math.floor(objects / 2);
+
+                if (c <= 1) {
+                    document.getElementById("result").innerText = "Number of objects must allow for at least 2 per side.";
+                    return;
+                }
+
+                const slSpace = b / (c - 1);
+                const srSpace = a / (c - 1);
+                document.getElementById("result").innerText = `Space between Stage Right fixtures is ${srSpace.toFixed(2)} and space between Stage Left fixtures is ${slSpace.toFixed(2)}.`;
             }
-            else
-                let a = totalLength/2-(srOffset+centerOffset)
-                let b = totalLength/2-(slOffset+centerOffset)
-                let c = Math.floor(objects/2)
-                const slSpace =b/(c-1)
-                const srSpace =a/(c-1)
-                document.getElementById("result").innerText = `Space between Stage Right fixtures is ${srSpace.toFixed(2)} and space between Stage Left fixtures are` ${slSpace.toFixed(2)};
+        }
     </script>
 </body>
 </html>
